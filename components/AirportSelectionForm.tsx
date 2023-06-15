@@ -19,7 +19,7 @@ export const AirportSelectionForm = ({
   const dispatch = useDispatch();
 
   return (
-    <>
+    <div style={{flexGrow: 1}}>
       <FormControl>
         <Heading color={"white"} as="h3" size="md">
           Departure airport
@@ -94,6 +94,6 @@ export const AirportSelectionForm = ({
       <Button width={"100%"} bg={"#efe5e5"} onClick={submitForm}>
         Find
       </Button>
-    </>
+    </div>
   );
 };

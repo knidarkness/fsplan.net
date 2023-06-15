@@ -51,10 +51,10 @@ const Home: NextPage = () => {
         <title>Flight planning | Sergey Dubovyk</title>
       </Head>
       <Flex h={"100vh"}>
-        <Box w="450px" bg={"#1B004A"} position={"relative"}>
-          <Center w={"95%"} margin={"auto"} flexDirection="column">
+        <Box w="450px" bg={"#1B004A"} position={"relative"} overflow={"auto"}>
+          <Center w={"95%"} margin={"auto"} flexDirection="column" height={"100%"}>
             <AirportSelectionForm submitForm={getDestinations} />
-            <Text color={"white"} position={"absolute"} bottom={"20px"}>
+            <Text color={"white"} margin={'20px'}>
               Copyright © Sergey Dubovyk 2023
             </Text>
           </Center>
