@@ -135,7 +135,7 @@ function Trends({ taf }: { taf: ITAF }) {
       {taf.trends.map((trend: TAFTrend, id) => (
         <Card key={`${taf.station}-${trend.validity.startHour}-${id}`}
               margin={2}
-              maxWidth={"300px"}>
+              width={"300px"}>
           <CardBody>
             <TafValidity trend={trend} />
             <WeatherPhenomenon conditions={trend.weatherConditions} />
