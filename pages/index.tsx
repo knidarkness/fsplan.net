@@ -10,6 +10,7 @@ import RouteSuggestionsList from "../components/RouteSuggestion/RouteSuggestions
 
 import dynamic from "next/dynamic";
 import { useFlags } from "flagsmith/react";
+import OnlyForSimModal from "../components/OnlyForSimModal";
 
 const useGetPossibleDestinations = () => {
   const [destinations, setDestinations] = useState({ airports: [], from: "" });
@@ -21,8 +22,8 @@ const useGetPossibleDestinations = () => {
     const result = await fetch("/api/weather", {
       method: "POST",
       body: JSON.stringify({
-        airportFilters: airportFilters,
-      }),
+        airportFilters: airportFilters
+      })
     });
     const resp = await result.json();
     setDestinations(resp);
@@ -45,6 +46,7 @@ const Home: NextPage = () => {
   console.log(flags.enable_wind_filter.enabled);
   return (
     <>
+      <OnlyForSimModal />
       <Head>
         <title>Flight planning | Sergey Dubovyk</title>
       </Head>
