@@ -1,4 +1,6 @@
 import "../styles/globals.css";
+import '../styles/react-paginate.css';
+
 import { ChakraProvider } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { FlagsmithProvider } from "flagsmith/react";

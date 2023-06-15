@@ -1,6 +1,57 @@
 import { Accordion, Center, Spinner } from "@chakra-ui/react";
 import RouteSuggestionItem from "./RouteSuggestionItem";
 import { Airport } from "../../pages/api/interfaces";
+import { useState } from "react";
+import ReactPaginate from "react-paginate";
+
+
+function PaginatedItems({destinations: items}: {destinations: { from: string; airports: Airport[] };}) {
+  const ELEMENTS_PER_PAGE = 20;
+  const [itemOffset, setItemOffset] = useState(0);
+
+  const endOffset = itemOffset + ELEMENTS_PER_PAGE;
+  const currentItems = items.airports.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(items.airports.length / ELEMENTS_PER_PAGE);
+
+  const handlePageClick = (event: { selected: number; }) => {
+    const newOffset = (event.selected * ELEMENTS_PER_PAGE) % items.airports.length;
+    setItemOffset(newOffset);
+  };
+
+  return (
+    <>
+      <Accordion defaultIndex={[]} allowMultiple>
+        {currentItems ? (
+          currentItems.map((item: Airport) => {
+            try {
+              return (
+                <RouteSuggestionItem
+                  from={items.from}
+                  key={item.ident}
+                  airport={item}
+                />
+              );
+            } catch (e) {
+              return undefined;
+            }
+          })
+        ) : (
+          <></>
+        )}
+      </Accordion>
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel=">"
+        className="react-paginate"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={3}
+        pageCount={pageCount}
+        previousLabel="<"
+        renderOnZeroPageCount={null}
+      />
+    </>
+  );
+}
 
 export default function RouteSuggestionsList({
   loading,
@@ -21,25 +72,7 @@ export default function RouteSuggestionsList({
           />
         </Center>
       ) : (
-        <Accordion defaultIndex={[]} allowMultiple>
-          {destinations?.airports ? (
-            destinations.airports.map((item: Airport) => {
-              try {
-                return (
-                  <RouteSuggestionItem
-                    from={destinations.from}
-                    key={item.ident}
-                    airport={item}
-                  />
-                );
-              } catch (e) {
-                return undefined;
-              }
-            })
-          ) : (
-            <></>
-          )}
-        </Accordion>
+        <PaginatedItems destinations={destinations}/>
       )}
     </>
   );
