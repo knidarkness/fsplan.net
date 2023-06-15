@@ -5,12 +5,13 @@ import { Box, Center, Flex, Text } from "@chakra-ui/react";
 import { AppState } from "../store/store";
 import { AirportSelectionForm } from "../components/AirportSelectionForm";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import React, { useState } from "react";
 import RouteSuggestionsList from "../components/RouteSuggestion/RouteSuggestionsList";
 
 import dynamic from "next/dynamic";
 import { useFlags } from "flagsmith/react";
 import OnlyForSimModal from "../components/OnlyForSimModal";
+import FeedbackForm from "../components/Feedback";
 
 const useGetPossibleDestinations = () => {
   const [destinations, setDestinations] = useState({ airports: [], from: "" });
@@ -43,7 +44,7 @@ const Home: NextPage = () => {
   );
 
   const flags = useFlags(["enable_wind_filter"]);
-  console.log(flags.enable_wind_filter.enabled);
+
   return (
     <>
       <OnlyForSimModal />
@@ -54,7 +55,8 @@ const Home: NextPage = () => {
         <Box w="450px" bg={"#1B004A"} position={"relative"} overflow={"auto"}>
           <Center w={"95%"} margin={"auto"} flexDirection="column" height={"100%"}>
             <AirportSelectionForm submitForm={getDestinations} />
-            <Text color={"white"} margin={'20px'}>
+            <FeedbackForm/>
+            <Text color={"white"} margin={"20px"}>
               Copyright © Sergey Dubovyk 2023
             </Text>
           </Center>
