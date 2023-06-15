@@ -76,6 +76,7 @@ export interface AirportFilters {
   visibilityRange: { min: number; max: number };
   ceilingRange: { min: number; max: number };
   runwayLength?: { min?: number; max?: number };
+  windConditions?: { min?: number; max?: number };
   allowDerivedMetar?: boolean;
 }
 

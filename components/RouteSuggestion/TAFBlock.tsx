@@ -22,10 +22,10 @@ function Validity({ validity }: { validity: IValidity }) {
     <Box>
       <Box>
         <Text>
-          From: day {validity.startDay} at {validity.startHour}z.
+          Starting: {validity.startDay} at {validity.startHour}:
         </Text>
         <Text>
-          To: day {validity.endDay} at {validity.endHour}z.
+          Ending: {validity.endDay} at {validity.endHour}z.
         </Text>
       </Box>
     </Box>
@@ -91,14 +91,14 @@ function WeatherConditions({
         <></>
       )}
       {weatherItem.clouds && weatherItem.clouds.length > 0 ? (
-        <Text>
+        <>
           <b>Clouds: </b>
           {weatherItem.clouds.map((clouds, id) => (
             <Text key={id}>
               {clouds.quantity} {clouds.height} {clouds.type}
             </Text>
           ))}
-        </Text>
+        </>
       ) : (
         <></>
       )}
@@ -118,12 +118,12 @@ function WeatherPhenomenon({
   return (
     <>
       <b>Phenomenons</b>:{" "}
-      {conditions.map((condition) => (
-        <>
+      {conditions.map((condition, index) => (
+        <div key={index}>
           {condition.intensity}
           {condition.descriptive}
           {condition.phenomenons.join(",")}
-        </>
+        </div>
       ))}
     </>
   );
@@ -132,16 +132,16 @@ function WeatherPhenomenon({
 function Trends({ taf }: { taf: ITAF }) {
   return (
     <Box display={"flex"} flexDirection={"row"} flexWrap={"wrap"}>
-      {taf.trends.map((trend: TAFTrend) => (
-        <Box
-          key={`${taf.station}-${trend.validity.startHour}`}
-          marginRight={10}
-          maxWidth={"300px"}
-        >
-          <TafValidity trend={trend} />
-          <WeatherPhenomenon conditions={trend.weatherConditions} />
-          <WeatherConditions weatherItem={trend} />
-        </Box>
+      {taf.trends.map((trend: TAFTrend, id) => (
+        <Card key={`${taf.station}-${trend.validity.startHour}-${id}`}
+              margin={2}
+              maxWidth={"300px"}>
+          <CardBody>
+            <TafValidity trend={trend} />
+            <WeatherPhenomenon conditions={trend.weatherConditions} />
+            <WeatherConditions weatherItem={trend} />
+          </CardBody>
+        </Card>
       ))}
     </Box>
   );

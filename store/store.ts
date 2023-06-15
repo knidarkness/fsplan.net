@@ -1,6 +1,6 @@
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import { createSlice } from "@reduxjs/toolkit";
-import { createWrapper } from "next-redux-wrapper";
+import {configureStore, ThunkAction, Action} from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
+import {createWrapper} from "next-redux-wrapper";
 
 export const mapStateSlice = createSlice({
   name: "mapStateSlice",
@@ -34,7 +34,7 @@ export const airportFiltersSlice = createSlice({
     departureAirport: "",
     distanceRange: {
       min: 1,
-      max: 2000,
+      max: 400,
     },
     runwayLength: {
       min: NaN,
@@ -45,6 +45,10 @@ export const airportFiltersSlice = createSlice({
       max: NaN,
     },
     ceilingRange: {
+      min: NaN,
+      max: NaN,
+    },
+    windConditions: {
       min: NaN,
       max: NaN,
     },
@@ -132,6 +136,25 @@ export const airportFiltersSlice = createSlice({
       ceilingRange: {
         ...state.ceilingRange,
         max: action.payload,
+      },
+    }),
+    setWindMin: (state, action) => ({
+      ...state,
+      windConditions: {
+        ...state.windConditions,
+        min:
+          typeof action.payload === "number"
+            ? action.payload
+            : state.windConditions.min,
+      },
+    }),
+    setWindMax: (state, action) => ({
+      ...state,
+      windConditions: {
+        ...state.windConditions,
+        max: typeof action.payload === "number"
+          ? action.payload
+          : state.windConditions.max,
       },
     }),
     setAllowDerivedMetar: (state, action) => ({

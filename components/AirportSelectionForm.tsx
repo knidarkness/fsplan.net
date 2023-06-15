@@ -41,7 +41,7 @@ export const AirportSelectionForm = ({
       </FormControl>
       <RangeTextInput
         name={"Flight range"}
-        range={{ min: 1, max: 2000 }}
+        range={{ min: 1, max: 5000 }}
         setMin={(value) =>
           dispatch(airportFiltersActions.setDistanceMin(value))
         }
@@ -74,6 +74,16 @@ export const AirportSelectionForm = ({
         range={{ min: 0, max: 10000 }}
         setMin={(value) => dispatch(airportFiltersActions.setCeilingMin(value))}
         setMax={(value) => dispatch(airportFiltersActions.setCeilingMax(value))}
+      />
+      <RangeTextInput
+        name={"Wind (kts)"}
+        range={{ min: 0, max: 50 }}
+        setMin={(value) =>
+          dispatch(airportFiltersActions.setWindMin(value))
+        }
+        setMax={(value) =>
+          dispatch(airportFiltersActions.setWindMax(value))
+        }
       />
       <CheckBoxInput
         name={"Derived Weather"}

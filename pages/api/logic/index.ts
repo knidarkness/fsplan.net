@@ -1,12 +1,12 @@
 import { getDistance } from "geolib";
+import { readFileSync } from "fs";
 import { Airport, AirportFilters } from "../interfaces";
 import { getAirportsWithMETARs } from "./metar";
 import { filterByVisibility } from "./visibilityFilter";
 import { filterByCeiling } from "./ceilingFilter";
 import { filterByRunwayLength } from "./runwayLength";
 import { getAirportsWithTAFs } from "./taf";
-
-import { readFileSync } from "fs";
+import { filterByRunwayWind } from "./windFilter.";
 
 const airports = JSON.parse(
   readFileSync("./static/airport-data-with-nearby-by-region.json", {
@@ -30,7 +30,7 @@ const findByDistance = (
   return Object.values(airports)
     .map((airport: Airport) => {
       const distance = getDistance(
-        { latitude: airport.latitude_deg, longitude: airport.longitude_deg },
+        {latitude: airport.latitude_deg, longitude: airport.longitude_deg},
         {
           latitude: targetAirportData.latitude_deg,
           longitude: targetAirportData.longitude_deg,
@@ -75,5 +75,6 @@ export const filterAirports = async (airportFilters: AirportFilters) => {
     .filter((airport) => filterByCeiling(airport, airportFilters))
     .filter((airport) => filterByVisibility(airport, airportFilters))
     .filter((airport) => filterByRunwayLength(airport, airportFilters))
-    .filter((airport) => !!airport.taf);
+    .filter((airport) => filterByRunwayWind(airport, airportFilters))
+    .filter((airport) => !!airport.taf || true);
 };
