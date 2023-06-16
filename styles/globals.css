@@ -1,0 +1,23 @@
+.navigraphChartsLinkBtn {
+    background-color: #1d2b41;
+    color: #FFFFFF !important;
+    border-radius: 5px;
+    font-size: 9pt;
+    padding: 4px;
+    margin-right: 5px;
+    text-decoration: none;
+}
+.navigraphChartsLinkBtn:link {
+    text-decoration: none !important;
+}
+.navigraphChartsLinkBtn:active {
+    text-decoration: none !important;
+}
+.navigraphChartsLinkBtn:hover {
+    text-decoration: none !important;
+    background-color: #0c121c;
+}
+
+.routeSuggestionItemSummary {
+    padding-top: 10px;
+}

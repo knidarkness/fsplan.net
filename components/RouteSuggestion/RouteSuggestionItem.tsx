@@ -5,7 +5,7 @@ import {
   AccordionPanel,
   Box,
   Link,
-  Text,
+  Text
 } from "@chakra-ui/react";
 import CoreWeatherTags from "./coreWeatherTags";
 import { AirportBadges } from "./AirportBadges";
@@ -15,9 +15,9 @@ import RunwaysBlock from "./RunwaysBlock";
 import MetarBlock from "./MetarBlock";
 
 export default function RouteSuggestionItem({
-  airport,
-  from,
-}: {
+                                              airport,
+                                              from
+                                            }: {
   from: string;
   airport: Airport;
 }) {
@@ -36,12 +36,20 @@ export default function RouteSuggestionItem({
           <Text fontSize={"16pt"}>
             {airport.ident} ({airport.name})
             <AirportBadges airport={airport} />
+            <Link
+              className={"navigraphChartsLinkBtn"}
+              target={"_blank"}
+              href={`https://charts.navigraph.com/airport/${airport.ident}?chartCategory=ARR&section=Information`}
+            >
+              Charts
+            </Link>
           </Text>
         </Box>
         <AccordionIcon />
       </AccordionButton>
       <CoreWeatherTags airport={airport} />
-      <Text>
+      <div className={"routeSuggestionItemSummary"}>
+
         <Link
           color={"#D90368"}
           fontWeight={"bold"}
@@ -51,7 +59,7 @@ export default function RouteSuggestionItem({
           Generate SimBrief flight plan: {from} {airport.ident} (
           {airport?.meta?.distance} nm)
         </Link>
-      </Text>
+      </div>
       <AccordionPanel pb={4}>
         <div style={{ display: "flex" }}>
           <MetarBlock airport={airport} />
