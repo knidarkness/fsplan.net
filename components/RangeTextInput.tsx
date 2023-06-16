@@ -28,7 +28,7 @@ export function RangeTextInput({
           <InputLeftAddon>From</InputLeftAddon>
           <Input
             color={"rgba(255,255,255,0.92)"}
-            placeholder={"0"}
+            placeholder={range.min.toString(10)}
             onChange={(e) => {
               if (parseInt(e.target.value) > range.max) {
                 e.target.value = range.max.toString();
@@ -48,7 +48,7 @@ export function RangeTextInput({
           <InputLeftAddon>To</InputLeftAddon>
           <Input
             color={"rgba(255,255,255,0.92)"}
-            placeholder={"9999"}
+            placeholder={range.max.toString(10)}
             onChange={(e) => {
               if (parseInt(e.target.value) > range.max) {
                 e.target.value = range.max.toString();
