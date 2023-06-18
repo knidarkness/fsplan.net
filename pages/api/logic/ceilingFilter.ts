@@ -25,7 +25,7 @@ export const filterByCeiling = (
   }
 
   const lowestCeiling = airport.metar.clouds.filter((item) =>
-    ["SCT", "BKN", "OVC"].includes(item.quantity)
+    ["BKN", "OVC"].includes(item.quantity)
   )[0]?.height;
 
   if (!lowestCeiling) return false;
