@@ -3,7 +3,7 @@ import { Card, CardBody, CardHeader, Heading, Text } from "@chakra-ui/react";
 
 export default function MetarBlock({ airport }: { airport: Airport }) {
   return (
-    <Card className={"route-suggestion-card"} style={{ margin: "5px" }}>
+    <Card className={"route-suggestion-card route-suggestion-card-metar"} style={{ margin: "5px" }}>
       <CardHeader style={{ paddingBottom: "5px" }}>
         <Heading as={"h4"} size={"md"}>
           METAR

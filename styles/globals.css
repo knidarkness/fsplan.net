@@ -31,16 +31,23 @@
 }
 
 .route-suggestion-card {
-    max-width: 33%;
+    max-width: 40%;
     margin: 5px;
+    flex-grow: 1;
+}
+
+.route-suggestion-card-metar {
+    max-width: 33%;
 }
 
 .route-suggestion-card-runways {
-    min-width: 250px !important;
+    min-width: 200px !important;
 }
 
 .route-suggestion-item-accordion {
     display: flex;
+    flex-wrap: wrap;
+
 }
 
 @media only screen and (max-width: 1000px) {
