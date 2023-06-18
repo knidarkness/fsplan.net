@@ -1,15 +1,17 @@
+import { useSelector } from "react-redux";
+import React, { useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
+import dynamic from "next/dynamic";
+import { useFlags } from "flagsmith/react";
+
+
 import { Box, Center, Flex, Text } from "@chakra-ui/react";
 
 import { AppState } from "../store/store";
-import { AirportSelectionForm } from "../components/AirportSelectionForm";
-import { useSelector } from "react-redux";
-import React, { useState } from "react";
-import RouteSuggestionsList from "../components/RouteSuggestion/RouteSuggestionsList";
 
-import dynamic from "next/dynamic";
-import { useFlags } from "flagsmith/react";
+import { AirportSelectionForm } from "../components/AirportSelectionForm";
+import RouteSuggestionsList from "../components/RouteSuggestion/RouteSuggestionsList";
 import OnlyForSimModal from "../components/OnlyForSimModal";
 import FeedbackForm from "../components/Feedback";
 
