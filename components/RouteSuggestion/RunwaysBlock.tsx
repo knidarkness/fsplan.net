@@ -22,12 +22,16 @@ export default function RunwaysBlock({ airport }: { airport: Airport }) {
         <CardBody>
           {airport.runways.map((runway) => {
             return (
-              <div key={runway.le_ident}>
+              <div key={runway.le_ident} style={{ marginBottom: "20px" }}>
                 <Box position="relative" padding="5">
                   <Divider />
                   <AbsoluteCenter bg="white" px="4">
                     <Heading size={"sm"} as={"h5"}>
-                      {runway.le_ident}-{runway.he_ident}<br/>{runway.length_ft}ft<br/>{runway.surface}
+                      {runway.le_ident}-{runway.he_ident}
+                      <br />
+                      {runway.length_ft}ft
+                      <br />
+                      {runway.surface}
                     </Heading>
                   </AbsoluteCenter>
                 </Box>
