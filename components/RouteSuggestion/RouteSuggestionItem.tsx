@@ -5,7 +5,7 @@ import {
   AccordionPanel,
   Box,
   Link,
-  Text
+  Text,
 } from "@chakra-ui/react";
 import CoreWeatherTags from "./coreWeatherTags";
 import { AirportBadges } from "./AirportBadges";
@@ -15,21 +15,16 @@ import RunwaysBlock from "./RunwaysBlock";
 import MetarBlock from "./MetarBlock";
 
 export default function RouteSuggestionItem({
-                                              airport,
-                                              from
-                                            }: {
+  airport,
+  from,
+}: {
   from: string;
   airport: Airport;
 }) {
   return (
     <AccordionItem
       key={airport.ident}
-      border={"1px"}
-      boxShadow={"rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px"}
-      borderColor={"#808080"}
-      m={"15px"}
-      padding={"10px"}
-      borderRadius={"5px"}
+      className={'route-suggestion-item'}
     >
       <AccordionButton paddingLeft={"0px"}>
         <Box flex={"1"} textAlign={"left"}>
@@ -49,7 +44,6 @@ export default function RouteSuggestionItem({
       </AccordionButton>
       <CoreWeatherTags airport={airport} />
       <div className={"routeSuggestionItemSummary"}>
-
         <Link
           color={"#D90368"}
           fontWeight={"bold"}
@@ -60,16 +54,14 @@ export default function RouteSuggestionItem({
           {airport?.meta?.distance} nm)
         </Link>
       </div>
-      <AccordionPanel pb={4}>
-        <div style={{ display: "flex" }}>
-          <MetarBlock airport={airport} />
-          {!!airport?.taf ? <TAFBlock taf={airport?.taf} /> : <></>}
-          {!!airport.runways && airport.runways.length > 0 ? (
-            <RunwaysBlock airport={airport} />
-          ) : (
-            <></>
-          )}
-        </div>
+      <AccordionPanel className={'route-suggestion-item-accordion'} pb={4}>
+        <MetarBlock airport={airport} />
+        {!!airport?.taf ? <TAFBlock taf={airport?.taf} /> : <></>}
+        {!!airport.runways && airport.runways.length > 0 ? (
+          <RunwaysBlock airport={airport} />
+        ) : (
+          <></>
+        )}
       </AccordionPanel>
     </AccordionItem>
   );

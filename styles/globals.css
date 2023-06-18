@@ -21,3 +21,35 @@
 .routeSuggestionItemSummary {
     padding-top: 10px;
 }
+
+.route-suggestion-item {
+    border: 1px solid #808080 !important;
+    box-shadow: rgba(0, 0, 0, 0.15) 2px 2px 3px;
+    margin: 15px;
+    padding: 10px;
+    border-radius: 5px
+}
+
+.route-suggestion-card {
+    max-width: 33%;
+    margin: 5px;
+}
+
+.route-suggestion-card-runways {
+    min-width: 250px !important;
+}
+
+.route-suggestion-item-accordion {
+    display: flex;
+}
+
+@media only screen and (max-width: 1000px) {
+    .route-suggestion-item-accordion {
+        flex-direction: column;
+    }
+
+    .route-suggestion-card {
+        max-width: 100%;
+        margin: 5px;
+    }
+}

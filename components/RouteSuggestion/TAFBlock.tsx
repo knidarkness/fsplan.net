@@ -133,9 +133,11 @@ function Trends({ taf }: { taf: ITAF }) {
   return (
     <Box display={"flex"} flexDirection={"row"} flexWrap={"wrap"}>
       {taf.trends.map((trend: TAFTrend, id) => (
-        <Card key={`${taf.station}-${trend.validity.startHour}-${id}`}
-              margin={2}
-              width={"300px"}>
+        <Card
+          key={`${taf.station}-${trend.validity.startHour}-${id}`}
+          margin={2}
+          width={"300px"}
+        >
           <CardBody>
             <TafValidity trend={trend} />
             <WeatherPhenomenon conditions={trend.weatherConditions} />
@@ -191,9 +193,8 @@ function TAFBody(taf: ITAF) {
 }
 
 export default function TAFBlock({ taf }: { taf?: ITAF }) {
-  // console.log(JSON.stringify(taf, null, 2));
   return (
-    <Card style={{ margin: "5px" }}>
+    <Card className={"route-suggestion-card"}>
       <CardHeader style={{ paddingBottom: "5px" }}>
         <Heading as={"h4"} size={"md"}>
           TAF
