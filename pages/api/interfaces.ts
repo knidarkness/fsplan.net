@@ -78,6 +78,10 @@ export interface AirportFilters {
   runwayLength?: { min?: number; max?: number };
   windConditions?: { min?: number; max?: number };
   allowDerivedMetar?: boolean;
+  requirePrecipitation?: boolean;
+  requireRain?: boolean;
+  requireThunderstorm?: boolean;
+  requireFog?: boolean;
 }
 
 export interface MetarResponse {

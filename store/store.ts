@@ -52,7 +52,11 @@ export const airportFiltersSlice = createSlice({
       min: NaN,
       max: NaN,
     },
+    requirePrecipitation: false,
+    requireRain: false,
+    requireThunderstorm: false,
     allowDerivedMetar: false,
+    requireFog: false,
   },
   reducers: {
     setDepartureAirport: (state, action) => {
@@ -160,6 +164,22 @@ export const airportFiltersSlice = createSlice({
     setAllowDerivedMetar: (state, action) => ({
       ...state,
       allowDerivedMetar: action.payload,
+    }),
+    setRequireRain: (state, action) => ({
+      ...state,
+      requireRain: action.payload,
+    }),
+    setRequireThunderstorm: (state, action) => ({
+      ...state,
+      requireThunderstorm: action.payload,
+    }),
+    setRequirePrecipitation: (state, action) => ({
+      ...state,
+      requirePrecipitation: action.payload,
+    }),
+    setRequireFog: (state, action) => ({
+      ...state,
+      requireFog: action.payload,
     }),
   },
 });

@@ -7,6 +7,7 @@ import { filterByCeiling } from "./ceilingFilter";
 import { filterByRunwayLength } from "./runwayLength";
 import { getAirportsWithTAFs } from "./taf";
 import { filterByRunwayWind } from "./windFilter.";
+import { filterByPrecipitation } from "./precipitationFilter";
 
 const airports = JSON.parse(
   readFileSync("./static/airport-data-with-nearby-by-region.json", {
@@ -76,5 +77,6 @@ export const filterAirports = async (airportFilters: AirportFilters) => {
     .filter((airport) => filterByVisibility(airport, airportFilters))
     .filter((airport) => filterByRunwayLength(airport, airportFilters))
     .filter((airport) => filterByRunwayWind(airport, airportFilters))
+    .filter(airport => filterByPrecipitation(airport, airportFilters))
     .filter((airport) => !!airport.taf || true);
 };

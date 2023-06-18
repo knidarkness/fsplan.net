@@ -27,7 +27,7 @@ export default function FeedbackForm() {
     onClose();
   };
   return (
-    <div style={{width: '100%'}}>
+    <div style={{width: '100%', marginTop: '20px'}}>
       <Button width={"100%"} bg={"#efe5e5"} onClick={onOpen}>Leave Feedback</Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

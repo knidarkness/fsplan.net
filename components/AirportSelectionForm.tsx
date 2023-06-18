@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   FormControl,
   Heading,
@@ -19,7 +20,7 @@ export const AirportSelectionForm = ({
   const dispatch = useDispatch();
 
   return (
-    <div style={{flexGrow: 1}}>
+    <div style={{ flexGrow: 1 }}>
       <FormControl>
         <Heading color={"white"} as="h3" size="md">
           Departure airport
@@ -78,15 +79,41 @@ export const AirportSelectionForm = ({
       <RangeTextInput
         name={"Wind (kts)"}
         range={{ min: 0, max: 50 }}
-        setMin={(value) =>
-          dispatch(airportFiltersActions.setWindMin(value))
-        }
-        setMax={(value) =>
-          dispatch(airportFiltersActions.setWindMax(value))
-        }
+        setMin={(value) => dispatch(airportFiltersActions.setWindMin(value))}
+        setMax={(value) => dispatch(airportFiltersActions.setWindMax(value))}
       />
+      <Box>
+        <Heading color={"white"} as="h3" size="md">
+          Weather conditions
+        </Heading>
+        <CheckBoxInput
+          text={"Require precipitation"}
+          setValue={(value) =>
+            dispatch(airportFiltersActions.setRequirePrecipitation(value))
+          }
+        />
+        <CheckBoxInput
+          text={"Require rain"}
+          setValue={(value) =>
+            dispatch(airportFiltersActions.setRequireRain(value))
+          }
+        />
+        <CheckBoxInput
+          text={"Require thunderstorm"}
+          setValue={(value) =>
+            dispatch(airportFiltersActions.setRequireThunderstorm(value))
+          }
+        />
+        <CheckBoxInput
+          text={"Require fog"}
+          setValue={(value) =>
+            dispatch(airportFiltersActions.setRequireFog(value))
+          }
+        />
+      </Box>
       <CheckBoxInput
         name={"Derived Weather"}
+        text={"Allow derived METAR"}
         setValue={(value) =>
           dispatch(airportFiltersActions.setAllowDerivedMetar(value))
         }
