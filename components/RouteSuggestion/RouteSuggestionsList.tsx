@@ -3,6 +3,7 @@ import RouteSuggestionItem from "./RouteSuggestionItem";
 import { Airport } from "../../pages/api/interfaces";
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
+import NoAirportsFound from "../NoAirportsFound";
 
 
 function PaginatedItems({destinations: items}: {destinations: { from: string; airports: Airport[] };}) {
@@ -53,6 +54,10 @@ function PaginatedItems({destinations: items}: {destinations: { from: string; ai
   );
 }
 
+function RouteSearchResultOrNotFound({ destinations }: {destinations: { from: string; airports: Airport[] };}) {
+  return ((destinations && destinations.airports.length > 0) ? (<PaginatedItems destinations={destinations}/>) : (<NoAirportsFound/>))
+}
+
 export default function RouteSuggestionsList({
   loading,
   destinations,
@@ -71,9 +76,9 @@ export default function RouteSuggestionsList({
             emptyColor="#F1E9DA"
           />
         </Center>
-      ) : (
-        <PaginatedItems destinations={destinations}/>
-      )}
+      ) :
+        <RouteSearchResultOrNotFound destinations={destinations}/>
+      }
     </>
   );
 }
