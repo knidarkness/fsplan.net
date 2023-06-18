@@ -46,7 +46,6 @@ const Home: NextPage = () => {
   );
 
   const flags = useFlags(["enable_wind_filter"]);
-
   return (
     <>
       <OnlyForSimModal />

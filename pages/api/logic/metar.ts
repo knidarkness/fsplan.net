@@ -2,6 +2,8 @@ import cache from "../cache";
 import { IMetar, parseMetar } from "metar-taf-parser";
 import { Airport } from "../interfaces";
 
+const METAR_DOWNLOAD_URL = process.env.METAR_DOWNLOAD_URL || "";
+
 const getMissingMetarList = (
   airportsList: (Airport | { ident: string; metar: null | IMetar })[]
 ): string[] => {
@@ -23,9 +25,7 @@ const getMetarFromCache = (icao: string) => {
 };
 
 const getOnlineMetars = async (): Promise<Record<string, IMetar>> => {
-  const onlineMetarsString = await (
-    await fetch("https://aviationweather.gov/adds/dataserver_current/current/metars.cache.csv")
-  ).text();
+  const onlineMetarsString = await (await fetch(METAR_DOWNLOAD_URL)).text();
 
   const metarMap: Record<string, any> = {};
   onlineMetarsString.split("\n").forEach((i) => {

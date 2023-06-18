@@ -1,6 +1,8 @@
-import { ITAF, parseMetar, parseTAF } from "metar-taf-parser";
+import { ITAF, parseTAF } from "metar-taf-parser";
 import { Airport } from "../interfaces";
 import cache from "../cache";
+
+const TAF_DOWNLOAD_URL = process.env.TAF_DOWNLOAD_URL || "";
 
 const setNearestTAFs = (
   airport: Airport,
@@ -37,9 +39,7 @@ export const getAirportsWithTAFs = async (
 ): Promise<Airport[]> => {
   const tafsSet: boolean = !!cache.get("TAFSFlag");
   if (!tafsSet) {
-    const tafsResponse = await fetch(
-      "https://aviationweather.gov/adds/dataserver_current/current/tafs.cache.csv"
-    );
+    const tafsResponse = await fetch(TAF_DOWNLOAD_URL);
     const TAFsrows = (await tafsResponse.text()).split("\n").slice(6);
     TAFsrows.forEach((row) => {
       const tafLine = row.split(",")[0];
