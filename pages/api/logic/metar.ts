@@ -22,13 +22,13 @@ const getMetarFromCache = (icao: string) => {
   }
 };
 
-const getVatsimMetars = async (): Promise<Record<string, IMetar>> => {
-  const vatsimMetarsString = await (
-    await fetch("http://metar.vatsim.net/metar.php?id=all")
+const getOnlineMetars = async (): Promise<Record<string, IMetar>> => {
+  const onlineMetarsString = await (
+    await fetch("https://aviationweather.gov/adds/dataserver_current/current/metars.cache.csv")
   ).text();
 
   const metarMap: Record<string, any> = {};
-  vatsimMetarsString.split("\n").forEach((i) => {
+  onlineMetarsString.split("\n").forEach((i) => {
     try {
       const parsedMetar = parseMetar(i);
       cache.set(parsedMetar.station, i);
@@ -83,18 +83,18 @@ async function fillWithVatsimMetars(airports: Airport[]): Promise<{
   metars: Record<string, IMetar>;
   missingMetars: string[];
 }> {
-  const vatsimMetars = await getVatsimMetars();
+  const onlineMetars = await getOnlineMetars();
   console.log("received vatsim metars");
   const airportsWithVatsimMETARs = airports.map((airport) => ({
     ...airport,
-    metar: vatsimMetars[airport.ident],
+    metar: onlineMetars[airport.ident],
   }));
 
   const missingMetars = getMissingMetarList(airportsWithVatsimMETARs);
 
   return {
     airports: airportsWithVatsimMETARs,
-    metars: vatsimMetars,
+    metars: onlineMetars,
     missingMetars,
   };
 }
