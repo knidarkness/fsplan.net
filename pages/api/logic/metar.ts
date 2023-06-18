@@ -84,7 +84,7 @@ async function fillWithVatsimMetars(airports: Airport[]): Promise<{
   missingMetars: string[];
 }> {
   const onlineMetars = await getOnlineMetars();
-  console.log("received vatsim metars");
+  // console.log("received online metars");
   const airportsWithVatsimMETARs = airports.map((airport) => ({
     ...airport,
     metar: onlineMetars[airport.ident],
@@ -143,10 +143,10 @@ export const getAirportsWithMETARs = async (
   } = getCachedMetars(airports);
 
   if (cacheMissingMetars.length === 0) {
-    console.log("100% cache hit");
+    // console.log("100% cache hit");
     return removeEmptyMetars(airportsWithMetarFromCache);
   }
-  console.log("missing metars for: ", cacheMissingMetars);
+  // console.log("missing metars for: ", cacheMissingMetars);
 
   const {
     airports: airportsWithVatsimMETARs,
@@ -154,7 +154,7 @@ export const getAirportsWithMETARs = async (
     missingMetars: missingVatsimMetars,
   } = await fillWithVatsimMetars(airportsWithMetarFromCache);
   if (missingVatsimMetars.length === 0) {
-    console.log("metars only from vatsim");
+    // console.log("metars only from online");
     return removeEmptyMetars(airportsWithVatsimMETARs);
   }
 

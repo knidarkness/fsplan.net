@@ -24,7 +24,7 @@ const findByDistance = (
 ) => {
   const targetAirportData = airports[sourceAirport];
   if (!targetAirportData) {
-    console.log(`no airport found for: ${sourceAirport}`);
+    // console.log(`no airport found for: ${sourceAirport}`);
     return [];
   }
 
