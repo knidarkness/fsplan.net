@@ -29,7 +29,7 @@ export default function FeedbackForm() {
   };
   return (
     <div style={{ width: "100%", marginTop: "20px" }}>
-      <Button width={"100%"} bg={"#efe5e5"} onClick={onOpen}>
+      <Button colorScheme={"green"} width={"100%"} onClick={onOpen}>
         Leave Feedback
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -54,7 +54,7 @@ export default function FeedbackForm() {
             </ModalBody>
             <ModalFooter>
               <Button
-                colorScheme="blue"
+                colorScheme={"green"}
                 mr={3}
                 type="submit"
                 disabled={submitting}

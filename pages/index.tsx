@@ -52,9 +52,9 @@ const Home: NextPage = () => {
       <Head>
         <title>Flight planning | Sergey Dubovyk</title>
       </Head>
-      <Flex h={"100vh"}>
+      <Flex minHeight={"100vh"}>
         <Box w="350px" bg={"#1B004A"} position={"relative"} overflow={"auto"}>
-          <Center w={"95%"} margin={"auto"} flexDirection="column" height={"100%"}>
+          <Center w={"95%"} margin={"auto"} justifyContent={"start"} flexDirection="column" height={"100%"}>
             <AirportSelectionForm submitForm={getDestinations} />
             <FeedbackForm/>
             <Text color={"white"} margin={"20px"}>
@@ -62,7 +62,7 @@ const Home: NextPage = () => {
             </Text>
           </Center>
         </Box>
-        <Box flex="1" h={"100%"} overflow={"auto"}>
+        <Box flex="1" h={"100%"}>
           {/*<Tabs height={"93%"} isLazy>*/}
           {/*  <TabList>*/}
           {/*    <Tab>List</Tab>*/}
