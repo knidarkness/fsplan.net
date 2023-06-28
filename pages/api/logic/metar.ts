@@ -13,12 +13,12 @@ const getMissingMetarList = (
 };
 
 const getMetarFromCache = (icao: string) => {
-  const cached = cache.get(icao);
-  if (!cache || cached === "not found") {
+  const cached: string | undefined = cache.get(icao);
+  if (!cached || cached === "not found") {
     return undefined;
   }
   try {
-    return parseMetar(cached as string);
+    return parseMetar(cached);
   } catch (e) {
     return undefined;
   }
