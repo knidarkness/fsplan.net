@@ -1,10 +1,36 @@
-import { DistanceUnit, Visibility } from "metar-taf-parser";
+export enum DistanceUnit {
+  Meters = "m",
+  StatuteMiles = "SM"
+}
+
+enum ValueIndicator {
+  GreaterThan = "P",
+  LessThan = "M"
+}
+
+interface Distance {
+  indicator?: ValueIndicator;
+  value: number;
+  unit: DistanceUnit;
+  /** No Directional Visibility */
+  ndv?: true;
+}
+export type Visibility = Distance & {
+  /**
+   * Never in North American METARs
+   */
+  min?: {
+    /** Always in meters */
+    value: number;
+    direction: string;
+  };
+};
 
 const statuteMilesToMeters = (distanceSM: number): number => {
   return distanceSM * 1609.34;
 };
 
-export const getVisibilityInMeters = (visibility: Visibility) => {
+export function getVisibilityInMeters (visibility: Visibility) {
   let visibilityMeters;
 
   switch (visibility.unit) {
@@ -16,4 +42,4 @@ export const getVisibilityInMeters = (visibility: Visibility) => {
   }
 
   return visibilityMeters;
-};
+}
