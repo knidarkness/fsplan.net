@@ -20,25 +20,14 @@ export const filterByCeiling = (
     return false;
   }
 
-  if (!airport.metar.clouds) {
-    return false;
-  }
-
   const lowestCeiling = airport.metar.clouds.filter((item) =>
     ["BKN", "OVC"].includes(item.quantity)
   )[0]?.height;
 
   if (!lowestCeiling) return false;
 
-  if (
-    !isNotANumber(filters.ceilingRange.min) &&
-    lowestCeiling < filters.ceilingRange.min
-  ) {
-    return false;
-  }
+  const withinMinRange = !isNotANumber(filters.ceilingRange.min) && lowestCeiling >= filters.ceilingRange.min;
+  const withinMaxRange = !isNotANumber(filters.ceilingRange.max) && lowestCeiling <= filters.ceilingRange.max;
 
-  return !(
-    !isNotANumber(filters.ceilingRange.max) &&
-    lowestCeiling > filters.ceilingRange.max
-  );
+  return withinMinRange && withinMaxRange;
 };
