@@ -49,8 +49,8 @@ describe("filterByCeiling", () => {
 
   test("returns true when lowestCeiling is within the range", () => {
     const filters = {
-      ceilingRange: { min: 1000, max: 5000 }
-    } as AirportFilters;
+      ceilingRange: { min: undefined, max: 5000 }
+    } as unknown as AirportFilters;
     const airport = {
       metar: {
         clouds: [

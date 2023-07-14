@@ -26,8 +26,8 @@ export const filterByCeiling = (
 
   if (!lowestCeiling) return false;
 
-  const withinMinRange = !isNotANumber(filters.ceilingRange.min) && lowestCeiling >= filters.ceilingRange.min;
-  const withinMaxRange = !isNotANumber(filters.ceilingRange.max) && lowestCeiling <= filters.ceilingRange.max;
+  const withinMinRange = isNotANumber(filters.ceilingRange.min) || lowestCeiling >= filters.ceilingRange.min;
+  const withinMaxRange = isNotANumber(filters.ceilingRange.max) || lowestCeiling <= filters.ceilingRange.max;
 
   return withinMinRange && withinMaxRange;
 };
